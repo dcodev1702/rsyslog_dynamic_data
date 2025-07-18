@@ -1,4 +1,4 @@
-# RSyslog Protocol/Port Identification Solution for Azure Monitor Agent
+# RSyslog Protocol/Port ID Solution with Azure Monitor Agent (AMA)
 
 ## Overview
 This solution enables a centralized syslog collector to identify which organization (client) sent each message by automatically adding protocol and port information to syslog entries. Messages include separate protocol and port fields (e.g., `udp 514`, `tcp 10514`) and are forwarded to Azure Monitor Agent for ingestion into Azure Log Analytics with full client identification.
