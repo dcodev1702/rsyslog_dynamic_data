@@ -55,6 +55,8 @@ The solution uses three custom RSyslog properties:
 
 These variables are inserted as separate fields in the syslog message format: `hostname syslogtag protocol port message`
 
+<img width="2304" height="1291" alt="image" src="https://github.com/user-attachments/assets/5e3369ec-0c92-477f-bfca-71f445c31090" />
+
 ## Configuration
 The solution adds port-specific inputs and preprocessing logic to `/etc/rsyslog.conf` while keeping the AMA configuration at `/etc/rsyslog.d/10-azuremonitoragent.conf` completely unchanged.
 
