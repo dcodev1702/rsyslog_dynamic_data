@@ -1,5 +1,6 @@
 # /etc/rsyslog.conf configuration file for rsyslog
-#   
+# BE SURE YOU RENAME THIS FILE FROM: rsyslog_conf_dynamic_data.sh TO rsyslog.conf located in /etc
+
 # For more information install rsyslog-doc and see
 # /usr/share/doc/rsyslog-doc/html/configuration/index.html
 #
