@@ -55,8 +55,6 @@ The solution uses three custom RSyslog properties:
 
 These variables are inserted as separate fields in the syslog message format: `hostname syslogtag protocol port message`
 
-<img width="2304" height="1291" alt="image" src="https://github.com/user-attachments/assets/5e3369ec-0c92-477f-bfca-71f445c31090" />
-
 ## Configuration
 The solution adds port-specific inputs and preprocessing logic to `/etc/rsyslog.conf` while keeping the AMA configuration at `/etc/rsyslog.d/10-azuremonitoragent.conf` completely unchanged.
 
@@ -83,3 +81,10 @@ The solution leverages RSyslog's custom property system (`$.protocol`, `$.port`,
 - **Scalable architecture** - Modular design supports easy addition of new ports and protocols
 
 This approach successfully overcomes the technical constraints of RSyslog v8.23 while maintaining full compatibility with Azure Monitor Agent's existing configuration requirements, providing a robust enterprise-grade solution for multi-tenant syslog aggregation.
+
+## Additional Documentation
+
+For detailed information about KQL queries, Azure Monitor Agent configuration, and Data Collection Rules, see the companion guide:
+
+**[KQL & Azure Monitor Agent (AMA).md](KQL%20&%20Azure%20Monitor%20Agent%20(AMA).md)**
+
