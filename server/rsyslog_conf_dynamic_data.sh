@@ -36,7 +36,7 @@ module(load="imudp")
 module(load="imtcp")
 
 # Internal listener to receive the tagged messages and process them through AMA
-input(type="imudp" port="1515" ruleset="RSYSLOG_DefaultRuleset")
+input(type="imudp" port="1515" address="127.0.0.1" ruleset="RSYSLOG_DefaultRuleset")
 
 # Allow UDP and TCP messages from localhost and 10.0.0.0/24 to prevent "disallowed sender" errors
 $AllowedSender UDP, 127.0.0.1, 10.0.0.0/24
