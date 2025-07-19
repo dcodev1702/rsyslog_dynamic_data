@@ -84,10 +84,10 @@ This approach successfully overcomes the technical constraints of RSyslog v8.23 
 
 ## Additional Documentation
 
-## Additional Documentation
-
 For platform-specific configuration and Azure integration guidance, see the companion guides:
 
-- **[RedHat Enterprise Linux (RHEL) 9.x Configuration.md](docs/RedHat%20Enterprise%20Linux%20(RHEL)%209.x%20Configuration.md)** - SELinux, Firewall, and RSyslog commands for RHEL 9.x
-- **[KQL & Azure Monitor Agent (AMA).md](docs/KQL%20&%20Azure%20Monitor%20Agent%20(AMA).md)** - KQL queries, AMA overview, and Data Collection Rules
+- **[RedHat Enterprise Linux (RHEL) 9.x Configuration.md](docs/RedHat%20Enterprise%20Linux%20(RHEL)%209.x%20Configuration.md)**
+  - SELinux, Firewall, and RSyslog commands for RHEL 9.x
+- **[KQL & Azure Monitor Agent (AMA).md](docs/KQL%20&%20Azure%20Monitor%20Agent%20(AMA).md)**
+  - KQL queries, AMA overview, and Data Collection Rules
 
