@@ -1,1 +1,1 @@
-TransformKql : "source | parse SyslogMessage with Protocol_CF " " Port_CF " " CleanSyslogMessage | project TimeGenerated, Computer, Facility, SeverityLevel, Protocol_CF, Port_CF = toint(Port_CF), SyslogMessage = CleanSyslogMessage"
+TransformKql : "source | parse SyslogMessage with Protocol_CF " " Port_CF " " CleanSyslogMessage | project TimeGenerated, Computer, Facility, SeverityLevel, Protocol = Protocol_CF, Port = toint(Port_CF), SyslogMessage = CleanSyslogMessage"
