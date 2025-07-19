@@ -53,10 +53,6 @@ For AMA to successfully send telemetry to a Log Analytics Workspace, the followi
 # Azure Government
 *.ods.opinsights.azure.us:443          # Data ingestion endpoint  
 *.oms.opinsights.azure.us:443          # Agent configuration and management
-
-# Azure China (21Vianet)
-*.ods.opinsights.azure.cn:443          # Data ingestion endpoint
-*.oms.opinsights.azure.cn:443          # Agent configuration and management
 ```
 
 **Additional Required Endpoints:**
@@ -65,9 +61,8 @@ For AMA to successfully send telemetry to a Log Analytics Workspace, the followi
 management.azure.com:443               # ARM endpoint for resource management
 
 # Azure Active Directory  
-login.microsoftonline.com:443          # Authentication endpoint
+login.microsoftonline.com:443          # Authentication (Azure Commercial)
 login.microsoftonline.us:443           # Authentication (Azure Government)
-login.chinacloudapi.cn:443             # Authentication (Azure China)
 
 # Data Collection Endpoint (DCE) - if using custom DCE
 <your-dce-name>.<region>.ingest.monitor.azure.com:443
