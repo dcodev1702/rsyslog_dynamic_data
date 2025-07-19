@@ -73,7 +73,7 @@ login.microsoftonline.us:443           # Authentication (Azure Government)
 ```
 
 **Network Configuration Requirements:**
-- All endpoints require **HTTPS (port 443)** outbound access
+- All REST API endpoints require authentication and **TCP HTTPS (443)** OUTBOUND access
 - No inbound ports required for AMA (outbound only)
 - Proxy support available if direct internet access is not permitted
 - Certificate validation must be enabled (do not disable SSL/TLS verification)
