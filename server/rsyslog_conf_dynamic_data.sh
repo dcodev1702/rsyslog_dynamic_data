@@ -57,6 +57,7 @@ ruleset(name="preprocess_udp_514") {
     set $.protocol = "udp";
     set $.port = "514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG1-U-514";
     call intermediate_ama_forward
 }
 
@@ -64,6 +65,7 @@ ruleset(name="preprocess_tcp_514") {
     set $.protocol = "tcp";
     set $.port = "514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG2-T-514"
     call intermediate_ama_forward
 }
 
@@ -71,6 +73,7 @@ ruleset(name="preprocess_udp_10514") {
     set $.protocol = "udp";
     set $.port = "10514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG3-U-10514"
     call intermediate_ama_forward
 }
 
@@ -78,6 +81,7 @@ ruleset(name="preprocess_tcp_10514") {
     set $.protocol = "tcp";
     set $.port = "10514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG4-T-10514"
     call intermediate_ama_forward
 }
 
@@ -85,6 +89,7 @@ ruleset(name="preprocess_udp_20514") {
     set $.protocol = "udp";
     set $.port = "20514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG5-U-20514"
     call intermediate_ama_forward
 }
 
@@ -92,11 +97,12 @@ ruleset(name="preprocess_tcp_20514") {
     set $.protocol = "tcp";
     set $.port = "20514";
     set $.original_hostname = $hostname;
+    set $.org = "ORG6-T-20514"
     call intermediate_ama_forward
 }
 
 # Intermediate template that creates a complete syslog message with protocol/port tags and preserves original hostname
-template(name="Intermediate_AMA_Format" type="string" string="<%PRI%>%TIMESTAMP% %$.original_hostname% %fromhost-ip% %$.protocol% %$.port% %syslogtag%")
+template(name="Intermediate_AMA_Format" type="string" string="<%PRI%>%TIMESTAMP% %$.original_hostname% %fromhost-ip% %$.protocol% %$.port% %$.org% %syslogtag%")
 
 # Intermediate AMA forwarding ruleset - forwards to internal port for AMA processing
 ruleset(name="intermediate_ama_forward") {
