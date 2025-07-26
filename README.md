@@ -71,8 +71,8 @@ The solution adds port-specific inputs and preprocessing logic to `/etc/rsyslog.
 Messages appear in Azure Log Analytics with clear organization identification:
 ```
 udp 514 ORG1 Original message from Organization 1
-tcp 10514 ORG4 Original message from Organization 2
-udp 20514 ORG5 Original message from Organization 3
+tcp 10514 ORG4 Original message from Organization 4
+udp 20514 ORG5 Original message from Organization 5
 ```
 
 ## Technical Innovation
