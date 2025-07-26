@@ -52,7 +52,7 @@ The solution uses three custom RSyslog properties:
 - `$.protocol` - Contains "udp" or "tcp"
 - `$.port` - Contains the port number ("514", "10514", "20514")
 - `$.original_hostname` - Preserves the original client hostname
-- `$.org` - Contains the organization name this syslog msg came from
+- `$.org` - Contains the organization name this syslog msg originated from
 
 These variables are inserted as separate fields in the syslog message format: `hostname syslogtag protocol port org message`
 
