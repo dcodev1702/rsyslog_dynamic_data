@@ -28,7 +28,7 @@ This RSyslog solution addresses enterprise syslog aggregation challenges by impl
 
 ### Flow Diagram
 ```
-External Clients → Port-Specific Inputs → Preprocessing Rulesets → Intermediate Template → Internal Port → AMA Template → Azure Monitor Agent → Log Analytics
+External Clients → Port-Specific Inputs → Preprocessing Rulesets → Intermediate Template → Internal 'Hairpin' Port → AMA Template → Azure Monitor Agent → Log Analytics
 ```
 
 ### Technical Implementation
