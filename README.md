@@ -1,13 +1,13 @@
 # RSyslog Protocol::Port ID Solution with Azure Monitor Agent (AMA)
 
 ## Overview
-This solution enables a centralized syslog collector to identify which organization (client) sent each message by automatically adding protocol and port information to syslog entries. Messages include separate protocol and port fields (e.g., `udp 514`, `tcp 10514`) and are forwarded to Azure Monitor Agent for ingestion into Azure Log Analytics with full client identification.
+This solution enables a centralized syslog collector to identify which organization (client) sent each message by automatically adding protocol, port, and organization information to syslog entries. Messages include separate protocol and port fields (e.g., `udp 514 ORG1`, `tcp 10514 ORG4`) and are prepended to the SyslogMessage (column) and then on to Azure Monitor Agent for ingestion into Azure Log Analytics with full client and collector identification.
 
 ## Problem Statement
 When multiple organizations send syslog data to a central collector on different ports, there was no way to identify which organization sent each message once it reached Azure Log Analytics. The solution needed to work within strict operational constraints while preserving original client metadata.
 
 ## Executive Summary
-This RSyslog solution addresses enterprise syslog aggregation challenges by implementing protocol and port identification without compromising existing Azure Monitor Agent integrations. The solution operates entirely in memory, preserves client hostnames, and maintains full compatibility with existing AMA configurations through an innovative intermediate templating approach that works around RSyslog v8.23 read-only variable limitations.
+This RSyslog solution addresses enterprise syslog aggregation challenges by implementing protocol and port identification without compromising existing Azure Monitor Agent integrations. The solution operates entirely in memory, preserves client hostnames, and maintains full compatibility with existing AMA configurations through an intermediate templating approach that works around RSyslog v8.23 read-only variable limitations.
 
 **Key Business Value:**
 - **Multi-tenant log separation** - Clear identification of message sources in consolidated logs
@@ -52,27 +52,31 @@ The solution uses three custom RSyslog properties:
 - `$.protocol` - Contains "udp" or "tcp"
 - `$.port` - Contains the port number ("514", "10514", "20514")
 - `$.original_hostname` - Preserves the original client hostname
+- `$.org` - Contains the organization name this syslog msg came from
 
-These variables are inserted as separate fields in the syslog message format: `hostname syslogtag protocol port message`
+These variables are inserted as separate fields in the syslog message format: `hostname syslogtag protocol port org message`
 
 ## Configuration
 The solution adds port-specific inputs and preprocessing logic to `/etc/rsyslog.conf` while keeping the AMA configuration at `/etc/rsyslog.d/10-azuremonitoragent.conf` completely unchanged.
 
 ### Supported Ports
-- **514** (UDP/TCP) - Organization 1
-- **10514** (UDP/TCP) - Organization 2  
-- **20514** (UDP/TCP) - Organization 3
+- **514** (UDP) - Organization 1
+- **514** (TCP) - Organization 2
+- **10514** (UDP) - Organization 3  
+- **10514** (TCP) - Organization 4  
+- **20514** (UDP) - Organization 5 
+- **20514** (TCP) - Organization 6
 
 ## Results
 Messages appear in Azure Log Analytics with clear organization identification:
 ```
-[udp:514] Original message from Organization 1
-[tcp:10514] Original message from Organization 2
-[udp:20514] Original message from Organization 3
+udp 514 ORG1 Original message from Organization 1
+tcp 10514 ORG4 Original message from Organization 2
+udp 20514 ORG5 Original message from Organization 3
 ```
 
 ## Technical Innovation
-The solution leverages RSyslog's custom property system (`$.protocol`, `$.port`, `$.original_hostname`) to work around read-only variable limitations in RSyslog v8.23. Through an innovative intermediate templating approach, the solution reconstructs syslog messages with embedded protocol and port information while preserving all original client metadata. This granular field-based approach enables flexible log analysis and easy expansion to additional protocols or ports without requiring any changes to existing Azure Monitor Agent configurations.
+The solution leverages RSyslog's custom property system (`$.protocol`, `$.port`, `$.original_hostname`, `$.org`) to work around read-only variable limitations in RSyslog v8.23. Through an innovative intermediate templating approach, the solution reconstructs syslog messages with embedded protocol, port, and organization information while preserving all original client metadata. This granular field-based approach enables flexible log analysis and easy expansion to additional protocols or ports without requiring any changes to existing Azure Monitor Agent configurations.
 
 **Innovation Highlights:**
 - **Memory-only processing** - Eliminates disk I/O bottlenecks and temporary file management
